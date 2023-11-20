@@ -1,0 +1,42 @@
+{
+    "name": "nickdala-spring-petclinic-hilla-langchain4j",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "VARIANT": "jammy"
+        }
+    },
+    "remoteUser": "vscode",
+    "containerEnv": {
+        "M2": "/home/vscode" // Maven cache
+    },
+    "features": {
+        // https://containers.dev/features
+        "docker-in-docker": "latest",
+        "docker-from-docker": "latest",
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "17",
+            "installMaven": "true",
+            "installGradle": "false"
+        },
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    //"forwardPorts": [ ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Extension Pack for Java; includes language support, debugging, maven.
+                "vscjava.vscode-java-pack",
+                // Spring Boot Extension Pack
+                "vmware.vscode-boot-dev-pack",
+                // YAML language support
+                "redhat.vscode-yaml",
+                // EditorConfig
+                "EditorConfig.EditorConfig"
+            ]
+        }
+    },
+    "hostRequirements": {
+        "cpus": 2
+    }
+}
