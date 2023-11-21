@@ -20,7 +20,9 @@ export default function MainLayout() {
             <NavLink className={navLinkClasses} to="/">
               Customers
             </NavLink>
-
+            <NavLink className={navLinkClasses} to="/chat">
+              Chat
+            </NavLink>
             <NavLink className={navLinkClasses} to="/about">
               About
             </NavLink>
