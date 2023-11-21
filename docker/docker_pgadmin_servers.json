@@ -1,0 +1,14 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "Docker Compose",
+        "Group": "Servers",
+        "Host": "postgres",
+        "Port": 5432,
+        "Username": "postgres",
+        "MaintenanceDB": "piggy_bank",
+        "SSLMode": "prefer",
+        "PassFile": "/tmp/pgpassfile"
+      }
+    }
+}

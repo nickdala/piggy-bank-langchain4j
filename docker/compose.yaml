@@ -1,0 +1,39 @@
+volumes:
+  postgres_data:
+    name: piggy_bank_postgres_data
+  pgadmin_data:
+    name: piggy_bank_pgadmin_data
+
+services:
+  postgres:
+    container_name: piggy_bank_postgres
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: piggy_bank
+      PG_DATA: "/data/postgres"
+    volumes:
+      - postgres_data:/data/postgres
+    ports:
+      - "54321:5432"
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: piggy_bank_pg_admin
+    image: dpage/pgadmin4:7.8
+    environment:
+      PGADMIN_DEFAULT_EMAIL: nick@piggybank.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
+    ports:
+      - "5050:80"
+    entrypoint:
+        - /bin/sh
+        - -c
+        - "/bin/echo 'postgres:5432:*:postgres:secret' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+    restart: unless-stopped
