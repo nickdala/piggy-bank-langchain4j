@@ -12,6 +12,8 @@ frontend/generated/
 .npmrc
 vite.generated.ts
 
+.DS_Store
+
 # Eclipse and STS
 .apt_generated
 .classpath
