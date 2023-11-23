@@ -1,3 +1,6 @@
+DROP TABLE accounts IF EXISTS;
+DROP TABLE customers IF EXISTS;
+
 create table accounts(
     account_id bigserial not null,
     customer_id bigint,
