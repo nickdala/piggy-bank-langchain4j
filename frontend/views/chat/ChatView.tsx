@@ -21,10 +21,9 @@ export default function ChatView() {
             userName: 'You'
         });
 
-        //const message = await ChatService.chat(name);
-        //addMessage({ userName: 'Bot', text: message });
+        const response = await ChatService.chat(message);
         addMessage({
-            text: "Hello!",
+            text: response,
             userName: 'Bot'
         });
     }

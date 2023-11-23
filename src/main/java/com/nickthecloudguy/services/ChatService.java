@@ -15,7 +15,6 @@ public class ChatService {
     private CustomerSupportAgent assistant;
 
     public String chat(String message) {
-        //return assistant.chat(message);
-        return "Hello, AI!";
+        return assistant.chat(message);
     }
 }
