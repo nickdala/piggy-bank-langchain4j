@@ -24,16 +24,7 @@ public class CustomerService {
         long id,
         String firstName,
         String lastName,
-        String email,
-        List<AccountRecord> accounts
-    ) {
-    }
-
-    public record AccountRecord(
-        long id,
-        String accountType,
-        String accountStatus,
-        long balance
+        String email
     ) {
     }
 
@@ -42,15 +33,7 @@ public class CustomerService {
             customer.getId(),
             customer.getFirstName(),
             customer.getLastName(),
-            customer.getEmail(),
-            customer.getAccounts().stream()
-                .map(account -> new AccountRecord(
-                    account.getId(),
-                    account.getAccountType().name(),
-                    account.getAccountStatus().name(),
-                    account.getBalance()
-                ))
-                .collect(Collectors.toList())
+            customer.getEmail()
         );
     }
 
@@ -58,5 +41,17 @@ public class CustomerService {
         return customerRepository.findAll().stream()
             .map(this::toRecord)
             .collect(Collectors.toList());
+    }
+
+    public CustomerRecord findCustomertById(long customerId) {
+        return customerRepository.findById(customerId)
+            .map(this::toRecord)
+            .orElseThrow();
+    }
+
+    public CustomerRecord findCustomertByEmail(String email) {
+        return customerRepository.findByEmailIgnoreCase(email)
+            .map(this::toRecord)
+            .orElseThrow();
     }
 }

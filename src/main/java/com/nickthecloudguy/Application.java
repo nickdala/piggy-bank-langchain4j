@@ -1,5 +1,6 @@
 package com.nickthecloudguy;
 
+import com.nickthecloudguy.services.AccountTools;
 import com.nickthecloudguy.services.CustomerSupportAgent;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
@@ -28,12 +29,14 @@ public class Application implements AppShellConfigurator {
     }
 
     @Bean
-    CustomerSupportAgent customerSupportAgent(ChatLanguageModel chatLanguageModel) {
+    CustomerSupportAgent customerSupportAgent(ChatLanguageModel chatLanguageModel,
+                                              AccountTools accountTools) {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
 
         return AiServices.builder(CustomerSupportAgent.class)
             .chatLanguageModel(chatLanguageModel)
             .chatMemory(chatMemory)
+            .tools(accountTools)
             .build();
     }
 

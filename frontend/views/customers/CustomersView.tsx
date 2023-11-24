@@ -18,8 +18,11 @@ export default function CustomersView() {
             <h3 className="text-l m-0">Customers</h3>
             <Grid
                 items={customers}
-                onActiveItemChanged={e => setSelected(e.detail.value)}
-                selectedItems={[selected]}>
+                selectedItems={[selected]}
+                onActiveItemChanged={e => {
+                    setSelected(e.detail.value);
+                }}
+            >
 
                 <GridColumn path="id" header="Customer ID" />
                 <GridColumn path="firstName" header="First Name" />
@@ -27,8 +30,8 @@ export default function CustomersView() {
                 <GridColumn path="email" header="Email" />
             </Grid>
 
-            {selected &&
-                <AccountsView accounts={selected.accounts} />
+            {selected  &&
+                <AccountsView customerId={selected.id}/>
             }
         </div>
     );
