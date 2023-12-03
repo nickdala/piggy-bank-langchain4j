@@ -12,8 +12,6 @@
     },
     "features": {
         // https://containers.dev/features
-        "docker-in-docker": "latest",
-        "docker-from-docker": "latest",
         "ghcr.io/devcontainers/features/java:1": {
             "version": "17",
             "installMaven": "true",
@@ -21,7 +19,7 @@
         },
         "ghcr.io/devcontainers/features/node:1": {}
     },
-    //"forwardPorts": [ ],
+    "forwardPorts": [8080],
     "customizations": {
         "vscode": {
             "extensions": [
