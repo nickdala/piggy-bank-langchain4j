@@ -1,5 +1,5 @@
 {
-    "name": "nickdala-spring-petclinic-hilla-langchain4j",
+    "name": "nickdala-piggybank-spring-langchain4j",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
