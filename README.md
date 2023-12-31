@@ -130,7 +130,7 @@ By using LangChain4j, we were able to build an AI driven chatbot with just a few
 
 We were able to leverage the power of LLMs and Prompt Engineering to build a chatbot that can close an account.
 
-Within the interface [CustomerSupportAgent](./src/main/java/dev/langchain4j/samples/piggybank/CustomerSupportAgent.java), we have the following `@SystemMessage`.
+Within the interface [CustomerSupportAgent](https://github.com/nickdala/piggy-bank-langchain4j/blob/main/src/main/java/com/nickthecloudguy/services/CustomerSupportAgent.java), we have the following `@SystemMessage`.
 
 ```java
 public interface CustomerSupportAgent {
@@ -139,6 +139,10 @@ public interface CustomerSupportAgent {
             You are a customer support agent of a bank named 'Piggy Bank Assistant'.
             Ask the customer how you can help them. The only thing you can assist
             the customer with is closing an account.
+        """
+    })
+    String chat(String message);
+}
 ```
 
 The `@SystemMessage` annotation is used to define the prompt for the chatbot. The prompt is the first instruction to the LLM and is used to generate the response from the chatbot.
@@ -149,7 +153,7 @@ As an exercise, try changing the prompt and see how the chatbot responds.
 
 Agents are used to tell the LLM what actions to take. In chains, a sequence of actions is hardcoded. Agents, on the other hand, utilize a language model as a reasoning engine to determine which actions to take and in which order. Tools are used to help the LLM perform the actions. They are methods an agent can use to perform an action.
 
-Within the class [AccountTools](./src/main/java/dev/langchain4j/samples/piggybank/AccountTools.java), we have the following `@Tool` annotation.
+Within the class [AccountTools](https://github.com/nickdala/piggy-bank-langchain4j/blob/main/src/main/java/com/nickthecloudguy/services/AccountTools.java), we have the following `@Tool` annotation.
 
 ```java
 public class AccountTools {
