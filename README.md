@@ -118,8 +118,56 @@ Next, we need to set the OpenAI API key in the `application.properties` file. To
 langchain4j.chat-model.openai.api-key=<your-openai-api-key>
 ```
 
-## Useful links
+## Key Takeaways
 
-- Read the documentation at [hilla.dev/docs](https://hilla.dev/docs/).
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/hilla) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
-- Report issues, create pull requests in [GitHub](https://github.com/vaadin/hilla).
+By using LangChain4j, we were able to build an AI driven chatbot with just a few lines of code. This project contains the following AI features.
+
+- Large Language Models (LLMs)
+- Prompt Engineering
+- LangChain4j Tools
+
+### Prompts and Large Language Models (LLMs)
+
+We were able to leverage the power of LLMs and Prompt Engineering to build a chatbot that can close an account.
+
+Within the interface [CustomerSupportAgent](./src/main/java/dev/langchain4j/samples/piggybank/CustomerSupportAgent.java), we have the following `@SystemMessage`.
+
+```java
+public interface CustomerSupportAgent {
+    @SystemMessage({
+        """
+            You are a customer support agent of a bank named 'Piggy Bank Assistant'.
+            Ask the customer how you can help them. The only thing you can assist
+            the customer with is closing an account.
+```
+
+The `@SystemMessage` annotation is used to define the prompt for the chatbot. The prompt is the first instruction to the LLM and is used to generate the response from the chatbot.
+
+As an exercise, try changing the prompt and see how the chatbot responds.
+
+### LangChain4j Agents & Tools
+
+Agents are used to tell the LLM what actions to take. In chains, a sequence of actions is hardcoded. Agents, on the other hand, utilize a language model as a reasoning engine to determine which actions to take and in which order. Tools are used to help the LLM perform the actions. They are methods an agent can use to perform an action.
+
+Within the class [AccountTools](./src/main/java/dev/langchain4j/samples/piggybank/AccountTools.java), we have the following `@Tool` annotation.
+
+```java
+public class AccountTools {
+    @Tool("Close account by id")
+    public boolean closeAccount(long accountId) {
+        accountService.closeAccount(accountId);
+        return true;
+    }
+
+    @Tool("Finds the customer by id")
+    public CustomerRecord findCustomerById(long customerId) {
+        return customerService.findCustomertById(customerId);
+    }
+}
+```
+
+The `@Tool` annotation is used to define the tool for the chatbot. It's important to provide a proper description of the tool. This will help the LLM determine which tool to use.
+
+## Conclusion
+
+In this article, we built an AI driven chatbot using LangChain4j. We were able to leverage the power of LLMs and Prompt Engineering to build a chatbot that can close an account.
