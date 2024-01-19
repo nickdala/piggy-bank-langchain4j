@@ -174,4 +174,6 @@ The `@Tool` annotation is used to define the tool for the chatbot. It's importan
 
 ## Conclusion
 
-In this article, we built an AI driven chatbot using LangChain4j. We were able to leverage the power of LLMs and Prompt Engineering to build a chatbot that can close an account.
+In this article, we built an AI driven chatbot using LangChain4j. We were able to leverage the power of LLMs and Prompt Engineering to build a chatbot that can close an account. 
+
+Blog post can be found [here](https://www.nickthecloudguy.com/spring-langchain4j/).
